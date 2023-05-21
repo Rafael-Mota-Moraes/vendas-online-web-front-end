@@ -1,4 +1,5 @@
 import ComponenteProprio from "./components/ComponenteProprio";
+import Contador from "./components/Contador";
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
           textoCorpo="texto do corpo do componente"
           titulo="Título do componente"
         />
+        <hr />
+        <Contador />
       </div>
     </>
   );

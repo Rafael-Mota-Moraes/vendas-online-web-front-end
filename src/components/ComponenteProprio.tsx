@@ -10,7 +10,10 @@ export default function ComponenteProprio(props: ComponenteProprioProps) {
     <div
       style={{
         color: props.corFonte || "black",
-        backgroundColor: props.corBg || "#fff"
+        backgroundColor: props.corBg || "#fff",
+        padding: "1rem",
+        borderRadius: ".5rem",
+        margin: "2rem"
       }}
     >
       <h1>{props.titulo}</h1>
