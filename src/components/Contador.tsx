@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -36,6 +36,10 @@ const Wrapper = styled.div`
 
 export default function Contador() {
   const [counter, setCounter] = useState<number>(0);
+
+  useEffect(() => {
+    console.log("Counter mudou");
+  }, [counter]);
 
   return (
     <Wrapper>
