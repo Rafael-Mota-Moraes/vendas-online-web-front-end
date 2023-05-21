@@ -1,23 +1,24 @@
-import "./App.css";
-import { styled } from "styled-components";
-import { Button, Space } from "antd";
+interface MinhaDivProps {
+  texto: string;
+}
 
-const StyledDiv = styled.div`
-  background-color: #ddd;
-  color: #333;
-  padding: 1rem;
-  border-radius: 0.75rem;
-`;
+const MinhaDiv = ({ texto }: MinhaDivProps) => {
+  return (
+    <div>
+      <p>{texto}</p>
+    </div>
+  );
+};
 
 function App() {
   return (
     <>
-      <StyledDiv>
-        <h1>TESTANDO</h1>
-        <Space wrap>
-          <Button type="primary">Primary Button</Button>
-        </Space>
-      </StyledDiv>
+      <div>
+        <h1>Título</h1>
+        <h2>Subtitulo</h2>
+        <MinhaDiv texto="Meu nome é Rafael" />
+        <MinhaDiv texto="Mais um texto" />
+      </div>
     </>
   );
 }
