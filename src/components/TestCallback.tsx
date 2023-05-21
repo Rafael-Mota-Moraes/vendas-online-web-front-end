@@ -12,7 +12,7 @@ export default function TestCallback() {
   }, [name]);
 
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h1 onClick={handleChangeName}>{name}</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit corporis
