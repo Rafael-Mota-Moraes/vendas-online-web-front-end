@@ -1,5 +1,6 @@
 import ComponenteProprio from "./components/ComponenteProprio";
 import Contador from "./components/Contador";
+import TestCallback from "./components/TestCallback";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         />
         <hr />
         <Contador />
+        <hr />
+        <TestCallback />
       </div>
     </>
   );
