@@ -1,3 +1,4 @@
+import Button from "../../../shared/buttons/button/Button";
 import Input from "../../../shared/inputs/input/Input";
 import {
   BackgroundImage,
@@ -19,6 +20,9 @@ const LoginScreen = () => {
           </TitleLogin>
           <Input title="Usuário" />
           <Input title="Senha" />
+          <Button type="primary" margin="64px 0px 16px">
+            ENTRAR
+          </Button>
         </LimitedContainer>
       </ContainerLogin>
 
