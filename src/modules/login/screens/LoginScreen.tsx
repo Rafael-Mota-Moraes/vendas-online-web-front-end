@@ -4,7 +4,8 @@ import {
   ContainerLogin,
   ContainerLoginScreen,
   LimitedContainer,
-  LogoImage
+  LogoImage,
+  TitleLogin
 } from "../styles/loginScreen.styles";
 
 const LoginScreen = () => {
@@ -13,6 +14,9 @@ const LoginScreen = () => {
       <ContainerLogin>
         <LimitedContainer>
           <LogoImage src="./logo.png" />
+          <TitleLogin aria-level={2} type="secondary">
+            LOGIN
+          </TitleLogin>
           <Input title="Usuário" />
           <Input title="Senha" />
         </LimitedContainer>
