@@ -31,8 +31,7 @@ export const ContainerLogin = styled.div`
 export const LimitedContainer = styled.div`
   width: 100%;
   max-width: 498px;
-  padding: 22px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
