@@ -11,10 +11,12 @@ import {
   LogoImage,
   TitleLogin
 } from "../styles/loginScreen.styles";
+import { useRequests } from "../../../shared/hooks/useRequests";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const { postRequest, loading } = useRequests();
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -25,19 +27,10 @@ const LoginScreen = () => {
   };
 
   const handleLogin = async () => {
-    const returnObject = await axios({
-      method: "post",
-      url: "http://localhost:8080/auth",
-      data: {
-        email: email,
-        password: password
-      }
-    })
-      .then((result) => result.data)
-      .catch((error) => {
-        alert("Usuário ou senha inválidos!");
-        console.log(error);
-      });
+    const returnObject = await postRequest("http://localhost:8080/auth", {
+      email: email,
+      password: password
+    });
 
     console.log(returnObject);
   };
@@ -63,7 +56,12 @@ const LoginScreen = () => {
             value={password}
             type="password"
           />
-          <Button type="primary" margin="64px 0px 16px" onClick={handleLogin}>
+          <Button
+            loading={loading}
+            type="primary"
+            margin="64px 0px 16px"
+            onClick={handleLogin}
+          >
             ENTRAR
           </Button>
         </LimitedContainer>
