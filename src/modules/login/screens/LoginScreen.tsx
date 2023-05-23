@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import Button from "../../../shared/buttons/button/Button";
-import Input from "../../../shared/inputs/input/Input";
+import Button from "../../../shared/components/buttons/button/Button";
+import Input from "../../../shared/components/inputs/input/Input";
 import {
   BackgroundImage,
   ContainerLogin,
