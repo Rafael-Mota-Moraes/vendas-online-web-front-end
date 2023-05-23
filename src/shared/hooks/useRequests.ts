@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { useGlobalContext } from "./useGlobalContext";
+import { connectionApiPost } from "../functions/connection/connectionApi";
+
+interface ABC {
+  accessToken: string;
+}
 
 export const useRequests = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -20,19 +25,15 @@ export const useRequests = () => {
     return returnData;
   };
 
-  const postRequest = async (url: string, body: any) => {
+  const postRequest = async (url: string, body: unknown) => {
     setLoading(true);
-    const returnData = await axios({
-      method: "post",
-      url: url,
-      data: body
-    })
+    const returnData = await connectionApiPost<ABC>(url, body)
       .then((result) => {
         setNotification("Entrando...", "success");
-        return result.data;
+        return result;
       })
-      .catch(() => {
-        setNotification("Usuário ou senha inválidos!", "error");
+      .catch((error: Error) => {
+        setNotification(error.message, "error");
         return null;
       });
 
