@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
 
 import Button from "../../../shared/components/buttons/button/Button";
 import Input from "../../../shared/components/inputs/input/Input";
@@ -12,8 +11,11 @@ import {
   TitleLogin
 } from "../styles/loginScreen.styles";
 import { useRequests } from "../../../shared/hooks/useRequests";
+import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
 
 const LoginScreen = () => {
+  const { accessToken, setAccessToken } = useGlobalContext();
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { postRequest, loading } = useRequests();
@@ -32,6 +34,8 @@ const LoginScreen = () => {
       password: password
     });
 
+    setAccessToken(returnObject.accessToken);
+
     console.log(returnObject);
   };
 
@@ -41,7 +45,7 @@ const LoginScreen = () => {
         <LimitedContainer>
           <LogoImage src="./logo.png" />
           <TitleLogin aria-level={2} type="secondary">
-            LOGIN
+            LOGIN | {accessToken}
           </TitleLogin>
           <Input
             title="E-Mail"
