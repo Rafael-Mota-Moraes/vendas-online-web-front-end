@@ -36,7 +36,7 @@ const LoginScreen = () => {
 
     setAccessToken(returnObject.accessToken);
 
-    console.log(returnObject);
+    console.log("returnObject", returnObject);
   };
 
   return (
@@ -45,7 +45,7 @@ const LoginScreen = () => {
         <LimitedContainer>
           <LogoImage src="./logo.png" />
           <TitleLogin aria-level={2} type="secondary">
-            LOGIN | {accessToken}
+            LOGIN
           </TitleLogin>
           <Input
             title="E-Mail"
