@@ -1,10 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
+
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { loginRoutes } from "./modules/login/routes.tsx";
+
+const mainRoutes = [
+  {
+    path: "/",
+    element: <div>Tela Principal</div>,
+    errorElement: <div>Página não encontrada</div>
+  }
+];
+
+const router = createBrowserRouter([...loginRoutes, ...mainRoutes]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
