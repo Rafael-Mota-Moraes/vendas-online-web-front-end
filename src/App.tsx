@@ -17,8 +17,11 @@ function App() {
   const { contextHolder } = useNotification();
   const { user, setUser } = useGlobalContext();
 
-  const routes = [...firstScreenRoutes, ...loginRoutes];
-  const routesLoggedIn: RouteObject[] = [...productScreens].map((route) => ({
+  const routes = [...loginRoutes];
+  const routesLoggedIn: RouteObject[] = [
+    ...productScreens,
+    ...firstScreenRoutes
+  ].map((route) => ({
     ...route,
     loader: () => verifyLoggedIn(setUser, user)
   }));

@@ -2,36 +2,17 @@ import { Spin } from "antd";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {
-  getAuthorizationToken,
-  unsetAuthorizationToken
-} from "../../../shared/functions/connection/auth";
+import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
 import { ProductRoutesEnum } from "../../product/routes";
-import { LoginRoutesEnum } from "../../login/routes";
-import { connectionApiGet } from "../../../shared/functions/connection/connectionApi";
-import { URL_USER } from "../../../shared/constants/urls";
 
 const FirstScreen = () => {
+  const { user } = useGlobalContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const verfyToken = async () => {
-      const token = getAuthorizationToken();
-      if (token) {
-        await connectionApiGet(URL_USER)
-          .then(() => {
-            navigate(ProductRoutesEnum.PRODUCT);
-          })
-          .catch(() => {
-            unsetAuthorizationToken();
-            navigate(LoginRoutesEnum.LOGIN);
-          });
-      } else {
-        navigate(LoginRoutesEnum.LOGIN);
-      }
-    };
-
-    verfyToken();
+    if (user) {
+      navigate(ProductRoutesEnum.PRODUCT);
+    }
   }, []);
 
   return (
