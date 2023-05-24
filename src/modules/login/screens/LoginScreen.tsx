@@ -43,7 +43,7 @@ const LoginScreen = () => {
         <LimitedContainer>
           <LogoImage src="./logo.png" />
           <TitleLogin aria-level={2} type="secondary">
-            LOGIN | {accessToken}
+            LOGIN
           </TitleLogin>
           <Input
             title="E-Mail"
