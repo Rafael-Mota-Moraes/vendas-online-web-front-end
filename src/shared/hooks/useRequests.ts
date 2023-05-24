@@ -12,7 +12,7 @@ import { AuthType } from "../../modules/login/types/AuthType";
 export const useRequests = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { setNotification } = useGlobalContext();
+  const { setNotification, setUser } = useGlobalContext();
 
   const getRequest = async (url: string) => {
     setLoading(true);
@@ -47,10 +47,11 @@ export const useRequests = () => {
     return returnData;
   };
 
-  const authRequest = async <T>(body: unknown): Promise<void> => {
+  const authRequest = async (body: unknown): Promise<void> => {
     setLoading(true);
     await connectionApiPost<AuthType>(URL_AUTH, body)
       .then((result) => {
+        setUser(result.user);
         setAuthorizationToken(result.accessToken);
         navigate(ProductRoutesEnum.PRODUCT);
         return result;
