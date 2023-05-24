@@ -2,13 +2,16 @@ import axios from "axios";
 import { useState } from "react";
 import { useGlobalContext } from "./useGlobalContext";
 import { connectionApiPost } from "../functions/connection/connectionApi";
-
-interface ABC {
-  accessToken: string;
-}
+import { URL_AUTH } from "../constants/urls";
+import { ERROR_INVALID_PASSWORD } from "../constants/errorsStatus";
+import { useNavigate } from "react-router-dom";
+import { ProductRoutesEnum } from "../../modules/product/routes";
+import { setAuthorizationToken } from "../functions/connection/auth";
+import { AuthType } from "../../modules/login/types/AuthType";
 
 export const useRequests = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   const { setNotification } = useGlobalContext();
 
   const getRequest = async (url: string) => {
@@ -44,5 +47,20 @@ export const useRequests = () => {
     return returnData;
   };
 
-  return { loading, getRequest, postRequest };
+  const authRequest = async <T>(body: unknown): Promise<void> => {
+    setLoading(true);
+    await connectionApiPost<AuthType>(URL_AUTH, body)
+      .then((result) => {
+        setAuthorizationToken(result.accessToken);
+        navigate(ProductRoutesEnum.PRODUCT);
+        return result;
+      })
+      .catch(() => {
+        setNotification(ERROR_INVALID_PASSWORD, "error");
+      });
+
+    setLoading(false);
+  };
+
+  return { loading, authRequest, getRequest, postRequest };
 };

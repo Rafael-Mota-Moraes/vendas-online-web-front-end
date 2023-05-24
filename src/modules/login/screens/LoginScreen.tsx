@@ -15,11 +15,9 @@ import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
 import { UserType } from "../types/UserType";
 
 const LoginScreen = () => {
-  const { accessToken, setAccessToken } = useGlobalContext();
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { postRequest, loading } = useRequests();
+  const { postRequest, authRequest, loading } = useRequests();
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -30,11 +28,10 @@ const LoginScreen = () => {
   };
 
   const handleLogin = async () => {
-    const user = await postRequest<UserType>("http://localhost:8080/auth", {
+    authRequest({
       email: email,
       password: password
     });
-    setAccessToken(user?.accessToken || "");
   };
 
   return (
