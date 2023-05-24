@@ -6,7 +6,7 @@ import {
 } from "../../constants/errorsStatus";
 
 export default class ConnectionApi {
-  static async call<T>(url: string, method: string, body: unknown) {
+  static async call<T>(url: string, method: string, body: unknown): Promise<T> {
     switch (method) {
       case MethodsEnum.GET:
         return (await axios.get<T>(url)).data;
@@ -14,14 +14,19 @@ export default class ConnectionApi {
         return (await axios.delete<T>(url)).data;
       case MethodsEnum.POST:
         return (await axios.post<T>(url, body)).data;
-      case MethodsEnum.PATCH:
-        return (await axios.patch<T>(url, body)).data;
       case MethodsEnum.PUT:
         return (await axios.put<T>(url, body)).data;
+      case MethodsEnum.PATCH:
+      default:
+        return (await axios.patch<T>(url, body)).data;
     }
   }
 
-  static async connect<T>(url: string, method: string, body?: unknown) {
+  static async connect<T>(
+    url: string,
+    method: string,
+    body?: unknown
+  ): Promise<T> {
     return ConnectionApi.call<T>(url, method, body).catch((error) => {
       if (error.response) {
         switch (error.response.status) {
@@ -35,26 +40,36 @@ export default class ConnectionApi {
             break;
         }
       }
+      throw new Error(ERROR_CONNECTION);
     });
   }
 }
 
-export const connectionApiGet = async <T>(url: string) => {
+export const connectionApiGet = async <T>(url: string): Promise<T> => {
   return ConnectionApi.connect(url, MethodsEnum.GET);
 };
 
-export const connectionApiDelete = async <T>(url: string) => {
+export const connectionApiDelete = async <T>(url: string): Promise<T> => {
   return ConnectionApi.connect(url, MethodsEnum.DELETE);
 };
 
-export const connectionApiPost = async <T>(url: string, body: unknown) => {
+export const connectionApiPost = async <T>(
+  url: string,
+  body: unknown
+): Promise<T> => {
   return ConnectionApi.connect(url, MethodsEnum.POST, body);
 };
 
-export const connectionApiPut = async <T>(url: string, body: unknown) => {
+export const connectionApiPut = async <T>(
+  url: string,
+  body: unknown
+): Promise<T> => {
   return ConnectionApi.connect(url, MethodsEnum.PUT, body);
 };
 
-export const connectionApiPatch = async <T>(url: string, body: unknown) => {
+export const connectionApiPatch = async <T>(
+  url: string,
+  body: unknown
+): Promise<T> => {
   return ConnectionApi.connect(url, MethodsEnum.PATCH, body);
 };

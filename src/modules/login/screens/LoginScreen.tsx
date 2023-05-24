@@ -12,6 +12,7 @@ import {
 } from "../styles/loginScreen.styles";
 import { useRequests } from "../../../shared/hooks/useRequests";
 import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
+import { UserType } from "../types/UserType";
 
 const LoginScreen = () => {
   const { accessToken, setAccessToken } = useGlobalContext();
@@ -29,14 +30,11 @@ const LoginScreen = () => {
   };
 
   const handleLogin = async () => {
-    const returnObject = await postRequest("http://localhost:8080/auth", {
+    const user = await postRequest<UserType>("http://localhost:8080/auth", {
       email: email,
       password: password
     });
-
-    setAccessToken(returnObject.accessToken);
-
-    console.log("returnObject", returnObject);
+    setAccessToken(user?.accessToken || "");
   };
 
   return (
@@ -45,7 +43,7 @@ const LoginScreen = () => {
         <LimitedContainer>
           <LogoImage src="./logo.png" />
           <TitleLogin aria-level={2} type="secondary">
-            LOGIN
+            LOGIN | {accessToken}
           </TitleLogin>
           <Input
             title="E-Mail"
