@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import Button from "../../../shared/components/buttons/button/Button";
 import Input from "../../../shared/components/inputs/input/Input";
@@ -11,13 +11,11 @@ import {
   TitleLogin
 } from "../styles/loginScreen.styles";
 import { useRequests } from "../../../shared/hooks/useRequests";
-import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
-import { UserType } from "../types/UserType";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { postRequest, authRequest, loading } = useRequests();
+  const { authRequest, loading } = useRequests();
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);

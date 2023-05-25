@@ -3,8 +3,7 @@ import "./index.css";
 import {
   RouteObject,
   RouterProvider,
-  createBrowserRouter,
-  useNavigate
+  createBrowserRouter
 } from "react-router-dom";
 import { loginRoutes } from "./modules/login/routes.tsx";
 import { useNotification } from "./shared/hooks/useNotification.ts";

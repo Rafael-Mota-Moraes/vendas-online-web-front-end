@@ -57,7 +57,7 @@ export default class ConnectionApi {
 }
 
 export const connectionApiGet = async <T>(url: string): Promise<T> => {
-  return ConnectionApi.connect(url, MethodsEnum.GET);
+  return ConnectionApi.connect<T>(url, MethodsEnum.GET);
 };
 
 export const connectionApiDelete = async <T>(url: string): Promise<T> => {
