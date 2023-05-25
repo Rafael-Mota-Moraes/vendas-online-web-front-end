@@ -13,9 +13,7 @@ import { AuthType } from "../../modules/login/types/AuthType";
 
 export const useRequests = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const navigate = useNavigate();
   const { setNotification, setUser } = useGlobalContext();
-
   const request = async <T>(
     url: string,
     method: MethodType,
@@ -43,12 +41,15 @@ export const useRequests = () => {
   };
 
   const authRequest = async (body: unknown): Promise<void> => {
+    // to-do RESOLVER USENAVIGATE
+    // const navigate = useNavigate();
+
     setLoading(true);
     await connectionApiPost<AuthType>(URL_AUTH, body)
       .then((result) => {
         setUser(result.user);
         setAuthorizationToken(result.accessToken);
-        navigate(ProductRoutesEnum.PRODUCT);
+        location.href = ProductRoutesEnum.PRODUCT;
         return result;
       })
       .catch(() => {

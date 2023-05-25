@@ -1,4 +1,3 @@
-import { NavigateFunction } from "react-router-dom";
 import { UserType } from "../../../modules/login/types/UserType";
 import { AUTHORIZATION_KEY } from "../../constants/authorizationConstants";
 import {
@@ -20,25 +19,16 @@ export const setAuthorizationToken = (token: string) => {
 
 export const getAuthorizationToken = () => getItemStorage(AUTHORIZATION_KEY);
 
-export const verifyLoggedIn = async (
-  setUser: (user: UserType) => void,
-  user?: UserType
-) => {
+export const verifyLoggedIn = async () => {
   const token = getAuthorizationToken();
   if (!token) {
     location.href = "/login";
   }
 
-  if (!user) {
-    await connectionApiGet<UserType>(URL_USER)
-      .then((userReturn) => {
-        setUser(userReturn);
-      })
-      .catch(() => {
-        unsetAuthorizationToken();
-        location.href = "/login";
-      });
-  }
+  await connectionApiGet<UserType>(URL_USER).catch(() => {
+    unsetAuthorizationToken();
+    location.href = "/login";
+  });
 
   return null;
 };
