@@ -11,13 +11,11 @@ import Select from "../../../shared/components/inputs/select/Select";
 import { InsertProduct } from "../../../shared/dtos/InsertProduct.dto";
 import { connectionApiPost } from "../../../shared/functions/connection/connectionApi";
 import { LimitedContainer } from "../../../shared/components/styles/limited.style";
-import {
-  DisplayFlex,
-  DisplayFlexJustifyRight
-} from "../../../shared/components/styles/display.styled";
+import { DisplayFlexJustifyRight } from "../../../shared/components/styles/display.styled";
 import { useNavigate } from "react-router-dom";
 import { ProductRoutesEnum } from "../routes";
 import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
+import InputMoney from "../../../shared/components/inputs/inputMoney/InputMoney";
 
 const listBreadcrumb = [
   { name: "HOME" },
@@ -99,7 +97,7 @@ const ProductInsert = () => {
             placeholder="Url imagem"
             onChange={(event) => onChange(event, "image")}
           />
-          <Input
+          <InputMoney
             margin="0px 0px 16px 0"
             title="Preço"
             placeholder="Preço"
