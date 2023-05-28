@@ -32,4 +32,7 @@ export const LogoMenu = styled(LogoImage)`
 
 export const NameCompany = styled(Text)`
   color: white;
+  text-align: center;
+  font-size: 18px;
+  width: 100%;
 `;

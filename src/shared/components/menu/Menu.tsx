@@ -1,9 +1,4 @@
-import {
-  ContainerLogoName,
-  ContainerMenu,
-  LogoMenu,
-  NameCompany
-} from "./menu.style";
+import { ContainerLogoName, ContainerMenu, NameCompany } from "./menu.style";
 
 import { useState } from "react";
 import {
@@ -84,7 +79,6 @@ const Menu = () => {
   return (
     <ContainerMenu>
       <ContainerLogoName>
-        <LogoMenu src="./logo.png" />
         <NameCompany>Vendas Online</NameCompany>
       </ContainerLogoName>
       <MenuAntd
