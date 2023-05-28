@@ -17,6 +17,7 @@ import { ProductRoutesEnum } from "../routes";
 import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
 import InputMoney from "../../../shared/components/inputs/inputMoney/InputMoney";
 import { useInsertProduct } from "../hooks/useInsertProduct";
+import { useCategory } from "../../category/hooks/useCategory";
 
 const listBreadcrumb = [
   { name: "HOME" },
@@ -25,8 +26,7 @@ const listBreadcrumb = [
 ];
 
 const ProductInsert = () => {
-  const { categories, setCategories } = useDataContext();
-  const { request } = useRequests();
+  const { categories } = useCategory();
 
   const {
     loading,
@@ -38,12 +38,6 @@ const ProductInsert = () => {
   } = useInsertProduct();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (categories.length === 0) {
-      request(URL_CATEGORY, MethodsEnum.GET, setCategories);
-    }
-  }, []);
 
   const handleOnClickCancel = () => {
     navigate(ProductRoutesEnum.PRODUCT);

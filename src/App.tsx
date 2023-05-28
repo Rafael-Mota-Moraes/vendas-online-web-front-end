@@ -18,10 +18,12 @@ import { useEffect } from "react";
 import { URL_USER } from "./shared/constants/urls.ts";
 import { MethodsEnum } from "./shared/enums/methods.enum.ts";
 import { useGlobalContext } from "./shared/hooks/useGlobalContext.tsx";
+import { categoryScreens } from "./modules/category/routes.tsx";
 
 const routes = [...loginRoutes];
 const routesLoggedIn: RouteObject[] = [
   ...productScreens,
+  ...categoryScreens,
   ...firstScreenRoutes
 ].map((route) => ({
   ...route,
