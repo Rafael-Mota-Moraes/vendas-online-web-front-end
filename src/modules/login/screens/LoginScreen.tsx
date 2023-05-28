@@ -11,11 +11,14 @@ import {
   TitleLogin
 } from "../styles/loginScreen.styles";
 import { useRequests } from "../../../shared/hooks/useRequests";
+import { useNavigate } from "react-router-dom";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { authRequest, loading } = useRequests();
+
+  const navigate = useNavigate();
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -26,7 +29,7 @@ const LoginScreen = () => {
   };
 
   const handleLogin = async () => {
-    authRequest({
+    authRequest(navigate, {
       email: email,
       password: password
     });
