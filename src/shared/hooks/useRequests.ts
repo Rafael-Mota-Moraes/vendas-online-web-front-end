@@ -6,8 +6,7 @@ import ConnectionApi, {
 } from "../functions/connection/connectionApi";
 import { URL_AUTH } from "../constants/urls";
 import { ERROR_INVALID_PASSWORD } from "../constants/errorsStatus";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-import { ProductRoutesEnum } from "../../modules/product/routes";
+import { NavigateFunction } from "react-router-dom";
 import { setAuthorizationToken } from "../functions/connection/auth";
 import { AuthType } from "../../modules/login/types/AuthType";
 import { FirstScreenRoutesEnum } from "../../modules/firstScreen/routes";
