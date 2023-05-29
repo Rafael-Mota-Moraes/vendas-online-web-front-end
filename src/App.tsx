@@ -17,8 +17,8 @@ import { useRequests } from "./shared/hooks/useRequests.ts";
 import { useEffect } from "react";
 import { URL_USER } from "./shared/constants/urls.ts";
 import { MethodsEnum } from "./shared/enums/methods.enum.ts";
-import { useGlobalContext } from "./shared/hooks/useGlobalContext.tsx";
 import { categoryScreens } from "./modules/category/routes.tsx";
+import { useGlobalReducer } from "./store/globalReducer/useGlobalReducer.ts";
 
 const routes = [...loginRoutes];
 const routesLoggedIn: RouteObject[] = [
@@ -32,7 +32,7 @@ const routesLoggedIn: RouteObject[] = [
 
 function App() {
   const { contextHolder } = useNotification();
-  const { setUser } = useGlobalContext();
+  const { setUser } = useGlobalReducer();
   const { request } = useRequests();
 
   const router = createBrowserRouter([...routes, ...routesLoggedIn]);

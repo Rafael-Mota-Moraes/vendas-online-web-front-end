@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDataContext } from "../../../shared/hooks/useDataContext";
 import { useRequests } from "../../../shared/hooks/useRequests";
 import { MethodsEnum } from "../../../shared/enums/methods.enum";
 import { ProductType } from "../../../shared/types/ProductType";
@@ -15,9 +14,6 @@ import { ProductRoutesEnum } from "../routes";
 import { Input } from "antd";
 import { LimitedContainer } from "../../../shared/components/styles/limited.style";
 import { DisplayFlexJustifyBetween } from "../../../shared/components/styles/display.styled";
-import { useAppSelector } from "../../../store/hooks";
-import { useDispatch } from "react-redux";
-import { setProductsAction } from "../../../store/reducers/productReducer";
 import { useProductReducer } from "../../../store/reducers/productReducer/useProductReducer";
 
 const columns = [
