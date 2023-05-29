@@ -1,15 +1,18 @@
 import Screen from "../../../shared/components/screen/Screen";
 import Input from "../../../shared/components/inputs/input/Input";
-import { ProductInsertContainer } from "../styles/productInsert.style";
 import Button from "../../../shared/components/buttons/button/Button";
 import Select from "../../../shared/components/inputs/select/Select";
 import { LimitedContainer } from "../../../shared/components/styles/limited.style";
-import { DisplayFlexJustifyRight } from "../../../shared/components/styles/display.styled";
+import {
+  DisplayFlexJustifyCenter,
+  DisplayFlexJustifyRight
+} from "../../../shared/components/styles/display.styled";
 import { useNavigate } from "react-router-dom";
 import { ProductRoutesEnum } from "../routes";
 import InputMoney from "../../../shared/components/inputs/inputMoney/InputMoney";
 import { useInsertProduct } from "../hooks/useInsertProduct";
 import { useCategory } from "../../category/hooks/useCategory";
+import { useState } from "react";
 
 const listBreadcrumb = [
   { name: "HOME" },
@@ -28,7 +31,6 @@ const ProductInsert = () => {
     handleChangeSelect,
     handleInsertProduct
   } = useInsertProduct();
-
   const navigate = useNavigate();
 
   const handleOnClickCancel = () => {
@@ -37,7 +39,7 @@ const ProductInsert = () => {
 
   return (
     <Screen listBreadcrumb={listBreadcrumb}>
-      <ProductInsertContainer>
+      <DisplayFlexJustifyCenter>
         <LimitedContainer width={400}>
           <Input
             value={product.name}
@@ -87,7 +89,7 @@ const ProductInsert = () => {
             </LimitedContainer>
           </DisplayFlexJustifyRight>
         </LimitedContainer>
-      </ProductInsertContainer>
+      </DisplayFlexJustifyCenter>
     </Screen>
   );
 };
