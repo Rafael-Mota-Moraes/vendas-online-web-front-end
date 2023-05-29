@@ -15,6 +15,10 @@ import { ProductRoutesEnum } from "../routes";
 import { Input } from "antd";
 import { LimitedContainer } from "../../../shared/components/styles/limited.style";
 import { DisplayFlexJustifyBetween } from "../../../shared/components/styles/display.styled";
+import { useAppSelector } from "../../../store/hooks";
+import { useDispatch } from "react-redux";
+import { setProductsAction } from "../../../store/reducers/productReducer";
+import { useProductReducer } from "../../../store/reducers/productReducer/useProductReducer";
 
 const columns = [
   {
@@ -49,7 +53,8 @@ const columns = [
 const listBreadcrumb = [{ name: "HOME" }, { name: "Produtos" }];
 
 const Product = () => {
-  const { products, setProducts } = useDataContext();
+  const { products, setProducts } = useProductReducer();
+
   const [productsFiltered, setProductsFiltered] = useState<ProductType[]>([]);
   const { request } = useRequests();
   const navigate = useNavigate();

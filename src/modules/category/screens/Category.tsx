@@ -38,8 +38,6 @@ const Category = () => {
     navigate(CategoryRoutesEnum.CATEGORY_INSERT);
   };
 
-  const handleOnSearch = (value: string) => {};
-
   return (
     <Screen listBreadcrumb={[{ name: "HOME" }, { name: "CATEGORIAS" }]}>
       <DisplayFlexJustifyBetween>
