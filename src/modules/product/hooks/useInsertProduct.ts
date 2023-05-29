@@ -55,6 +55,7 @@ export const useInsertProduct = () => {
     await connectionApiPost(URL_PRODUCT, product)
       .then(() => {
         setNotification("Produto inserido com sucesso!", "success");
+        navigate(ProductRoutesEnum.PRODUCT);
         navigateToHome();
       })
       .catch((error: Error) => {

@@ -31,7 +31,7 @@ const columns: ColumnsType<CategoryType> = [
 ];
 
 const Category = () => {
-  const { categories } = useCategory();
+  const { categories, handleOnChangeSearch } = useCategory();
   const navigate = useNavigate();
 
   const handleOnClickCategory = () => {
@@ -47,7 +47,7 @@ const Category = () => {
           <Search
             placeholder="Buscar Categoria"
             enterButton
-            onSearch={(value) => handleOnSearch(value)}
+            onSearch={(value) => handleOnChangeSearch(value)}
           />
         </LimitedContainer>
         <LimitedContainer width={120}>

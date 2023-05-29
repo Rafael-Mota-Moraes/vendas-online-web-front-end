@@ -11,7 +11,7 @@ import { useInsertCategory } from "../hooks/useInsertCategory";
 import { CategoryRoutesEnum } from "../routes";
 
 const CategoryInsert = () => {
-  const { name, loading, handleOnChangeName, insertCategory } =
+  const { name, loading, handleOnChangeName, insertCategory, disabledButton } =
     useInsertCategory();
 
   const navigate = useNavigate();
@@ -42,7 +42,12 @@ const CategoryInsert = () => {
           />
           <DisplayFlexJustifyRight>
             <LimitedContainer margin="0 16px" width={140}>
-              <Button type="primary" loading={loading} onClick={insertCategory}>
+              <Button
+                type="primary"
+                disabled={disabledButton}
+                loading={loading}
+                onClick={insertCategory}
+              >
                 Inserir Categoria
               </Button>
             </LimitedContainer>
