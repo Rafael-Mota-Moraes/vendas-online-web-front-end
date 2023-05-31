@@ -84,9 +84,7 @@ const ProductInsert = () => {
                 disabled={disableButton}
                 onClick={handleInsertProduct}
                 type="primary"
-                data-testid={
-                  ProductInsertTestIdEnum.PRODUCT_INSERT_BUTTON_INSERT
-                }
+                data-testid={ProductInsertTestIdEnum.PRODUCT_BUTTON_INSERT}
               >
                 Inserir Produto
               </Button>
@@ -96,9 +94,7 @@ const ProductInsert = () => {
                 danger
                 type="primary"
                 onClick={handleOnClickCancel}
-                data-testid={
-                  ProductInsertTestIdEnum.PRODUCT_INSERT_BUTTON_CANCEL
-                }
+                data-testid={ProductInsertTestIdEnum.PRODUCT_BUTTON_CANCEL}
               >
                 Cancelar
               </Button>

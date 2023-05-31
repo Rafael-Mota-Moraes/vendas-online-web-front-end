@@ -2,10 +2,11 @@ import { fireEvent, render } from "@testing-library/react";
 import ProductInsert from "../ProductInsert";
 import { ProductInsertTestIdEnum } from "../../enum/ProductInsertTestIdEnum";
 import { mockProductInsert } from "../../__mocks__/productInsert.mock";
-import { useInsertProduct } from "../../hooks/useInsertProduct";
+
+const mockNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
-  useNavigate: () => jest.fn()
+  useNavigate: () => mockNavigate
 }));
 
 jest.mock("../../../category/hooks/useCategory", () => ({
@@ -16,6 +17,7 @@ jest.mock("../../../category/hooks/useCategory", () => ({
 
 let value = "";
 let type = "";
+const mockButtonInsert = jest.fn();
 
 jest.mock("../../hooks/useInsertProduct", () => ({
   useInsertProduct: () => ({
@@ -26,8 +28,8 @@ jest.mock("../../hooks/useInsertProduct", () => ({
       value = event.target.value;
       type = x;
     },
-    handleChangeSelect: jest.fn(),
-    handleInsertProduct: jest.fn()
+    handleInsertProduct: mockButtonInsert,
+    handleChangeSelect: jest.fn()
   })
 }));
 
@@ -36,10 +38,10 @@ describe("Test Button", () => {
     const { getByTestId } = render(<ProductInsert />);
 
     expect(
-      getByTestId(ProductInsertTestIdEnum.PRODUCT_INSERT_BUTTON_CANCEL)
+      getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_CANCEL)
     ).toBeDefined();
     expect(
-      getByTestId(ProductInsertTestIdEnum.PRODUCT_INSERT_BUTTON_INSERT)
+      getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_INSERT)
     ).toBeDefined();
     expect(
       getByTestId(ProductInsertTestIdEnum.PRODUCT_INSERT_CONTAINER)
@@ -54,7 +56,7 @@ describe("Test Button", () => {
       getByTestId(ProductInsertTestIdEnum.PRODUCT_INSERT_INPUT_PRICE)
     ).toBeDefined();
     expect(
-      getByTestId(ProductInsertTestIdEnum.PRODUCT_INSERT_BUTTON_CANCEL)
+      getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_CANCEL)
     ).toBeDefined();
   });
 
@@ -95,5 +97,25 @@ describe("Test Button", () => {
 
     expect(value).toEqual("image.png");
     expect(type).toEqual("image");
+  });
+
+  it("should call handleInsertProduct in click insert button", () => {
+    const { getByTestId } = render(<ProductInsert />);
+
+    const input = getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_INSERT);
+
+    fireEvent.click(input);
+
+    expect(mockButtonInsert).toBeCalled();
+  });
+
+  it("should call navigate in click cancel button", () => {
+    const { getByTestId } = render(<ProductInsert />);
+
+    const input = getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_CANCEL);
+
+    fireEvent.click(input);
+
+    expect(mockNavigate).toBeCalled();
   });
 });
