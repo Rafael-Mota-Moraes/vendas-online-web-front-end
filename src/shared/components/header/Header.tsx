@@ -4,6 +4,7 @@ import { HeaderContainer, IconExit } from "./header.style";
 
 import { Modal } from "antd";
 import { useState } from "react";
+import { HeaderTestIdEnum } from "./HeaderTestId.enum";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -21,16 +22,22 @@ const Header = () => {
     <>
       <Modal
         title="Modal"
+        data-testid={HeaderTestIdEnum.HEADER_MODAL}
         open={open}
         onOk={() => logout(navigate)}
         onCancel={hideModal}
         okText="Sim"
         cancelText="Cancelar"
       >
-        <p>Tem certeza que deseja sair?</p>
+        <p data-testid={HeaderTestIdEnum.HEADER_MODAL_P}>
+          Tem certeza que deseja sair?
+        </p>
       </Modal>
-      <HeaderContainer>
-        <IconExit onClick={showModal} />
+      <HeaderContainer data-testid={HeaderTestIdEnum.HEADER_CONTAINER}>
+        <IconExit
+          onClick={showModal}
+          data-testid={HeaderTestIdEnum.HEADER_LOGO}
+        />
       </HeaderContainer>
     </>
   );
