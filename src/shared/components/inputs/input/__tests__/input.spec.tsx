@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Input from "../Input";
-import { InputTextIdEnum } from "../InputTextIdEnum";
+import { InputTextIdEnum } from "../enum/InputTextIdEnum";
 
 const TEST_ID = "TEST_ID_INPUT";
 const TITLE_MOCK = "TITLE_MOCK";

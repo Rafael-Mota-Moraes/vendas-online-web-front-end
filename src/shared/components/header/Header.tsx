@@ -4,7 +4,7 @@ import { HeaderContainer, IconExit } from "./header.style";
 
 import { Modal } from "antd";
 import { useState } from "react";
-import { HeaderTestIdEnum } from "./HeaderTestId.enum";
+import { HeaderTestIdEnum } from "../../../modules/product/screens/enum/HeaderTestId.enum";
 
 const Header = () => {
   const [open, setOpen] = useState(false);

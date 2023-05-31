@@ -73,7 +73,7 @@ const Product = () => {
       setProducts([...products]);
     } else {
       setProductsFiltered([
-        ...productsFiltered?.filter((product) => {
+        ...productsFiltered.filter((product) => {
           return product.name.includes(value);
         })
       ]);
