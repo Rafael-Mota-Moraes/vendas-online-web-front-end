@@ -7,7 +7,7 @@ import { ProductRoutesEnum } from "../routes";
 import { useGlobalReducer } from "../../../store/globalReducer/useGlobalReducer";
 
 export const useInsertProduct = () => {
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [disableButton, setDisableButton] = useState(true);
   const [product, setProduct] = useState<InsertProduct>({
     name: "",
@@ -52,6 +52,7 @@ export const useInsertProduct = () => {
   };
 
   const handleInsertProduct = async () => {
+    setLoading(true);
     await connectionApiPost(URL_PRODUCT, product)
       .then(() => {
         setNotification("Produto inserido com sucesso!", "success");
@@ -61,6 +62,7 @@ export const useInsertProduct = () => {
       .catch((error: Error) => {
         setNotification(error.message, "error");
       });
+    setLoading(false);
   };
 
   const navigateToHome = () => {
