@@ -1,8 +1,14 @@
 import { act, renderHook } from "@testing-library/react";
 import { useInsertProduct } from "../useInsertProduct";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { URL_PRODUCT } from "../../../../shared/constants/urls";
 
 const mockNavigate = jest.fn();
 const mockSetNotification = jest.fn();
+const mockAxios = new MockAdapter(axios);
+
+mockAxios.onPost(URL_PRODUCT, {});
 
 jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate
@@ -107,5 +113,19 @@ describe("Test use insert product", () => {
     });
 
     expect(result.current.disableButton).toEqual(true);
+  });
+
+  it("should call axios.post", () => {
+    const spyAxios = jest.spyOn(axios, "post");
+
+    const { result } = renderHook(() => useInsertProduct());
+
+    act(() => {
+      result.current.handleInsertProduct();
+    });
+
+    expect(spyAxios.mock.calls[0][1]).toEqual(result.current.product);
+
+    expect(spyAxios.mock.calls.length).toEqual(1);
   });
 });
